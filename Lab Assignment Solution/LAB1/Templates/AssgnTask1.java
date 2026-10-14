@@ -1,27 +1,17 @@
+//Assignment Task 01: Row Rotation Policy
+    class AssgnTask1{
 
-class AssgnTask1{
-
+    //Complete this method so that it gives the Expected Output
+    //YOU ONLY HAVE TO SUBMIT THIS METHOD, NO OTHER DRIVER CODE
     public static Integer rowRotation( Integer examWeek, String[][] matrix ){
 
-        int row = matrix.length;
+        //For this task you don't need to create new Matrix
+	//You can create 1D array if you need (but you can do it without creating any 1D array as well)
+        //After rotation the Matrix should be printed inside the method
+        //Only the integer row number is to be returned
 
-        int pass = (examWeek - 1) % row;
-        if (pass < 0) {
-            pass += row;
-        }
-
-        for (int i = 0; i < pass; i++) {
-            String[] bottomRow = matrix[row - 1];
-            for (int j = row - 1; j > 0; j--) {
-                matrix[j] = matrix[j - 1];
-            }
-            matrix[0] = bottomRow;
-        }
-
-        Arr.print2D(matrix);
-        int ans = (row - 1 + pass) % row;
-        
-        return ans + 1;
+        //TO DO
+        return null;
     }
 
     //DO NOT CHANGE ANY DRIVER CODE BELOW THIS LINE
