@@ -21,3 +21,17 @@ public static Integer rowRotation( Integer examWeek, String[][] matrix ){
         
         return ans + 1;
 }
+
+// Task 02
+public static Integer[][] compressMatrix( Integer[][] matrix ){
+       Integer[][] comp = new Integer[matrix.length/2][matrix[0].length/2];
+       int row = 0;
+       for (int i = 0; i < matrix.length-1; i+=2){
+        int col = 0;
+        for(int j = 0; j < matrix[0].length-1; j+= 2){
+            comp[row][col++] = matrix[i][j] + matrix[i+1][j] + matrix[i][j+1] + matrix[i+1][j+1];
+        }
+        row++;
+       }
+       return comp;
+}
