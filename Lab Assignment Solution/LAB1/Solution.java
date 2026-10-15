@@ -35,3 +35,35 @@ public static Integer[][] compressMatrix( Integer[][] matrix ){
        }
        return comp;
 }
+
+// Task 03
+public static void playGame( Integer[][] arena ){
+
+        int Points = 0;
+        for(int i = 0; i < arena.length; i++){
+            for (int j = 0; j < arena[0].length; j++){
+                if (arena[i][j] % 50 == 0 && arena[i][j] > 0){
+                    if(i + 1 < arena.length && arena[i+1][j] == 2){
+                        Points++;
+                    } 
+                    if (i - 1 >= 0 && arena[i-1][j] == 2){
+                        Points++;
+                    }
+                    if(j + 1 < arena[0].length && arena[i][j+1] == 2){
+                        Points++;
+                    } 
+                    if (j - 1 >= 0 && arena[i][j-1] == 2){
+                        Points++;
+                    }
+                }
+            }
+        }
+
+        Points *=2;
+        System.out.print("Points Gained: " + Points +". "); 
+        if (Points < 10){
+            System.out.println("Your team is out.");
+        } else {
+            System.out.println("Your team has survived the game.");
+        }
+}
