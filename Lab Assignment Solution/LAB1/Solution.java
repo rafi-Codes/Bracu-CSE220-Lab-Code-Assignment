@@ -86,5 +86,12 @@ public static void rotateSecret( Character[][] board ){
                 board[top][left+1] = temp;
             }
         }
+
+        for (Character[] line : board){
+            for(char ch : line){
+                System.out.print(ch);
+            }
+        }
+        System.out.println();
 }
 
