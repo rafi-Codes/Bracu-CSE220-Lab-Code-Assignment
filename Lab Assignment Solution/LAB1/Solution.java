@@ -67,3 +67,24 @@ public static void playGame( Integer[][] arena ){
             System.out.println("Your team has survived the game.");
         }
 }
+
+// Task 04
+public static void rotateSecret( Character[][] board ){
+        int layers = board.length/2;
+        for(int i = 0; i < layers; i++){
+            int rotate = layers - i;
+            while(rotate-->0){
+                int top = i;
+                int left = i;
+                int right = board.length - 1 - i;
+                int bottom = board.length - 1 - i;
+                char temp = board[top][left];
+                for (int t = top+1; t <= bottom; t++) board[t-1][left] = board[t][left];
+                for (int t = left+1; t <= right; t++) board[bottom][t-1] = board[bottom][t];
+                for (int t = bottom-1; t >= top; t--) board[t+1][right] = board[t][right];
+                for (int t = right-1; t >= left; t--) board[top][t+1] = board[top][t];
+                board[top][left+1] = temp;
+            }
+        }
+}
+
