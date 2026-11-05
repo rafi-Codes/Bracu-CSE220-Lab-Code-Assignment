@@ -17,3 +17,55 @@ public static String checkSimilar(Node building1, Node building2) {
 
       return "Similar";
 }
+
+// Task 02
+public static Node organizeBooks(Node head, Integer[] popularity) {
+        
+        Node lastSort = null;
+        for (int i = 0; i < popularity.length - 1; i++) {
+            Node curr;
+            
+            if (lastSort == null){
+                curr = head;
+            } else {
+                curr = lastSort.next;
+            }
+
+            Node maxHead = curr;
+            Node maxPrev = lastSort;
+            Node prev = maxHead;
+            int maxIdx = i;
+
+            for (int j = i + 1; j < popularity.length; j++) {
+                Node point = prev.next;
+                if (popularity[j] > popularity[maxIdx]) {
+                    maxIdx = j;
+                    maxHead = point;
+                    maxPrev = prev;
+                }
+                prev = point;
+            }
+
+            if (maxIdx != i) {
+
+                maxPrev.next = maxHead.next;
+                maxHead.next = curr;
+                
+                if (lastSort == null) {
+                    head = maxHead;
+                } else {
+                    lastSort.next = maxHead;
+                }
+
+                int temp = popularity[maxIdx];
+                for (int j = maxIdx; j > i; j--) {
+                    popularity[j] = popularity[j - 1];
+                }
+                popularity[i] = temp;
+            }
+
+            lastSort = maxHead;
+        }
+
+        return head;
+}
