@@ -121,3 +121,25 @@ public static Node idGenerator(Node head1, Node head2, Node head3) {
         }
         return id; 
 }
+
+// Task 05
+public static void sumOddAppend(Node dh) {
+        Node prev = dh;
+        Node curr = dh.next;
+        int sum = 0;
+        while(curr != dh){
+          
+            if((int)curr.elem % 2 != 0){
+                sum += (int)curr.elem;
+                prev.next = curr.next;
+                curr.next = null;
+                curr = prev.next;
+            } else {
+                prev = curr;
+                curr = curr.next;
+            }
+        }
+        Node newN = new Node(sum);
+        prev.next = newN;
+        newN.next = dh;
+}
