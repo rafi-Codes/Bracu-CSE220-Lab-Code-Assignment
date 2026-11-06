@@ -143,3 +143,25 @@ public static void sumOddAppend(Node dh) {
         prev.next = newN;
         newN.next = dh;
 }
+
+// Task 06
+public static void pairJoin(DNode dh1, DNode dh2) {
+        DNode start1 = dh1.next.next;
+        DNode start2 = dh2.next;
+        DNode point = dh1.next;
+
+        while(start1 != null){
+            point.next = start2;
+            start2.prev = point;
+            start2 = start2.next;
+            point.next.next = start1;
+            start1.prev = point.next;
+            point = start1;
+            start1 = point.next;
+        }
+        point.next = start2;
+        start2.prev = point;
+        start2.next = dh1;
+        dh1.prev = start2;
+        dh2.next = null;
+}
