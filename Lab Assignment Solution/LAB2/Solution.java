@@ -90,3 +90,34 @@ public static Node alternateMerge( Node head1, Node head2 ){
         
         return head1;
 }
+
+// Task 04
+public static Node idGenerator(Node head1, Node head2, Node head3) {
+        
+        Node curr = head1;
+        Node next = null;
+        Node id = null;;
+        Node nextStep = null;
+
+        while(curr != null){
+            id = new Node(curr.elem,next);
+            if (next == null){
+                nextStep = id;
+            }
+            next = id;
+            curr = curr.next;
+        }
+
+        Node curr1 = head2;
+        Node curr2 = head3;
+        while(curr1 != null || curr2 != null){
+            int elem = ((int)curr1.elem + (int)curr2.elem) % 10;
+            Node newN = new Node(elem);
+            nextStep.next = newN;
+            curr1 = curr1.next;
+            curr2 = curr2.next;
+            nextStep = newN;
+
+        }
+        return id; 
+}
