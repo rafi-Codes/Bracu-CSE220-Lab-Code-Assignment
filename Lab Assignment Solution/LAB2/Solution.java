@@ -69,3 +69,24 @@ public static Node organizeBooks(Node head, Integer[] popularity) {
 
         return head;
 }
+
+// Task 03
+public static Node alternateMerge( Node head1, Node head2 ){
+        
+        Node start1 = head1.next;
+        Node start2 = head2;
+        Node point = head1;
+
+        while(start1 != null){
+            point.next = start2;
+            start2 = start2.next;
+            point.next.next = start1;
+            point = start1;
+            start1 = point.next;
+        }
+
+        point.next = start2;
+        start2 = null;
+        
+        return head1;
+    }
