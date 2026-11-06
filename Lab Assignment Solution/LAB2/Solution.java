@@ -89,4 +89,4 @@ public static Node alternateMerge( Node head1, Node head2 ){
         start2 = null;
         
         return head1;
-    }
+}
