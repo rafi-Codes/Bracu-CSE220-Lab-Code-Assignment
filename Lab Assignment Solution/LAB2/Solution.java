@@ -165,3 +165,29 @@ public static void pairJoin(DNode dh1, DNode dh2) {
         dh1.prev = start2;
         dh2.next = null;
 }
+
+// Task 07
+public static void rangeMove(DNode dh, int start, int end) {
+        DNode curr = dh.next;
+        int size = 0;
+        while(curr != dh){
+            curr = curr.next;
+            size++;
+        }
+        DNode lastN = dh.prev;
+        curr = dh.next;
+        while(size--> 0 && lastN != curr){
+            int val = (int)curr.elem;
+            DNode next = curr.next;
+            if(val >= start && val <= end){
+                curr.prev.next = curr.next;
+                curr.next.prev = curr.prev;
+                curr.prev = lastN;
+                curr.next = dh;
+                lastN.next = curr;
+                dh.prev = curr;
+                lastN = curr;
+            }
+            curr = next;
+        }
+}
