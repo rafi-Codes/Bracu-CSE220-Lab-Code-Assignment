@@ -133,30 +133,28 @@ public static void dance_pair(Stack stk) {
             System.out.println("#" + pairNumber + ": " + male + " & " + female);
         }
 
-        Queue[] unpaired = new Queue[2];
-        String[] msg = new String[2];
-
+        Queue unpaired = null;
+        String msg = "Unpaired ";
         if(!maleQueue.isEmpty()){
-            unpaired[0] = maleQueue;
-            msg[0] = "Unpaired Male:";
+            unpaired = maleQueue;
+            msg += "Male:";
         } else if(!femaleQueue.isEmpty()){
-            unpaired[1] = femaleQueue;
-            msg[1] = "Unpaired Female:";
+            unpaired = femaleQueue;
+            msg += "Female:";
         }
         
-        for(int i = 0; i < unpaired.length; i++){
-            if(unpaired[i] != null){
-                System.out.println(msg[i]);
-                boolean first = true;
-                while (!unpaired[i].isEmpty()) {
-                    if (!first) {
-                        System.out.print(", ");
-                    }
-                    System.out.print(unpaired[i].dequeue());
-                    first = false;
-                }
-                System.out.println();
-            } 
-        }    
-}
 
+        if(unpaired != null){
+            System.out.println(msg);
+            boolean first = true;
+            while (!unpaired.isEmpty()) {
+                if (!first) {
+                    System.out.print(", ");
+                }
+                System.out.print(unpaired.dequeue());
+                first = false;
+            }
+            System.out.println();
+        } 
+        
+}
