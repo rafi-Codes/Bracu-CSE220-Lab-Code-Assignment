@@ -87,3 +87,76 @@ public static String hotPotato(String[] players, int k) {
         }
         return ans;
 }
+
+// Task 05
+public static void dance_pair(Stack stk) {
+        Queue maleQueue = new Queue();
+        Queue femaleQueue = new Queue();
+        int pairNumber = 0;
+
+        while (!stk.isEmpty()) {
+            Dancer first = (Dancer) stk.pop();
+
+            if (stk.isEmpty()) {
+                if (first.getGender() == 'M') {
+                    maleQueue.enqueue(first);
+                } else {
+                    femaleQueue.enqueue(first);
+                }
+                break;
+            }
+
+            Dancer next = (Dancer) stk.peek();
+            if (first.getGender() != next.getGender()) {
+                stk.pop();
+                pairNumber++;
+                System.out.println("#" + pairNumber + ": " + first + " & " + next);
+            } else if (first.getGender() == 'F') {
+                femaleQueue.enqueue(first);
+            } else if (!femaleQueue.isEmpty()) {
+                Dancer female = (Dancer) femaleQueue.dequeue();
+                pairNumber++;
+                System.out.println("#" + pairNumber + ": " + first + " & " + female);
+            } else {
+                maleQueue.enqueue(first);
+            }
+        }
+
+        boolean hasExtraPairs = !maleQueue.isEmpty() && !femaleQueue.isEmpty();
+        if (hasExtraPairs) {
+            System.out.println("Extra Pair:");
+        }
+        while (!maleQueue.isEmpty() && !femaleQueue.isEmpty()) {
+            Dancer male = (Dancer) maleQueue.dequeue();
+            Dancer female = (Dancer) femaleQueue.dequeue();
+            pairNumber++;
+            System.out.println("#" + pairNumber + ": " + male + " & " + female);
+        }
+
+        Queue[] unpaired = new Queue[2];
+        String[] msg = new String[2];
+
+        if(!maleQueue.isEmpty()){
+            unpaired[0] = maleQueue;
+            msg[0] = "Unpaired Male:";
+        } else if(!femaleQueue.isEmpty()){
+            unpaired[1] = femaleQueue;
+            msg[1] = "Unpaired Female:";
+        }
+        
+        for(int i = 0; i < unpaired.length; i++){
+            if(unpaired[i] != null){
+                System.out.println(msg[i]);
+                boolean first = true;
+                while (!unpaired[i].isEmpty()) {
+                    if (!first) {
+                        System.out.print(", ");
+                    }
+                    System.out.print(unpaired[i].dequeue());
+                    first = false;
+                }
+                System.out.println();
+            } 
+        }    
+}
+
