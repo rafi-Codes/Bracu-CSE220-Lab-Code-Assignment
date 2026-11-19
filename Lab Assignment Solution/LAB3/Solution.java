@@ -52,3 +52,16 @@ public String searchHashtable( Object[] keyValuePair ){
         return "Not Found";
 }
 
+// Task 03
+public static Stack conditionalReverse(Stack stack) {
+        Stack ans = new Stack();
+        ans.push(stack.pop());
+        while(!stack.isEmpty()){
+            if(!ans.peek().equals(stack.peek())){
+                ans.push(stack.pop());
+            }else{
+                stack.pop();
+            }
+        }
+        return ans; 
+}
