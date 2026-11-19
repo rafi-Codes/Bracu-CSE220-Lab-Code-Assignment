@@ -65,3 +65,25 @@ public static Stack conditionalReverse(Stack stack) {
         }
         return ans; 
 }
+
+// Task 04
+public static String hotPotato(String[] players, int k) {
+        LinkedListQueue queue = new LinkedListQueue();
+        for(String player : players){
+            queue.enqueue(player);
+        }
+        int count = 0;
+        String ans = "";
+        while(!queue.isEmpty()){
+            if(count == k){
+                queue.dequeue();
+                count = 0;
+            }else {
+                ans = (String) queue.dequeue();
+                if(queue.isEmpty()) return ans;
+                queue.enqueue(ans);
+                count++;
+            }
+        }
+        return ans;
+}
